@@ -14,7 +14,8 @@ var contact_service_1 = require('./contact.service');
 var ContactListComponent = (function () {
     function ContactListComponent(contactService) {
         this.contactService = contactService;
-        this.showDetails = {};
+        this.showDetails = null;
+        this.contacts = null;
     }
     ContactListComponent.prototype.getContacts = function () {
         var _this = this;
@@ -29,7 +30,7 @@ var ContactListComponent = (function () {
     ContactListComponent = __decorate([
         core_1.Component({
             selector: 'contact-list',
-            template: "\n    <ul>\n        <li *ngFor=\"let contact of contacts\"\n        (click)=\"selectContact(contact)\"\n        [class.clicked]=\"showDetails===contact\"\n        >\n            {{contact.firstName}} {{contact.lastName}}\n        </li>\n    </ul>\n    <contactSelector [contact]=\"showDetails\"></contactSelector>\n    ",
+            template: "\n    <ul>\n        <li *ngFor=\"let contact of contacts\"\n        (click)=\"selectContact(contact)\"\n        [class.clicked]=\"showDetails===contact\"\n        >\n            {{contact.firstName}} {{contact.lastName}}\n        </li>\n    </ul>\n    <contactSelector *ngIf=\"showDetails !== null\" [contact]=\"showDetails\"></contactSelector>\n    ",
             directives: [contact_component_1.ContactComponent],
             providers: [contact_service_1.ContactService],
             styleUrls: ["./assests/css/contact-list.css"]

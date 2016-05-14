@@ -15,7 +15,7 @@ import {OnInit} from '@angular/core'
             {{contact.firstName}} {{contact.lastName}}
         </li>
     </ul>
-    <contactSelector [contact]="showDetails"></contactSelector>
+    <contactSelector *ngIf="showDetails !== null" [contact]="showDetails"></contactSelector>
     `,
     directives:[ContactComponent],
     providers:[ContactService],
@@ -23,8 +23,8 @@ import {OnInit} from '@angular/core'
 })
 export class ContactListComponent implements OnInit{
     
-    public showDetails={};
-     public contacts:Contact[];
+    public showDetails=null;
+    public contacts:Contact[]=null;
     
     constructor(private contactService: ContactService){}
     getContacts(){

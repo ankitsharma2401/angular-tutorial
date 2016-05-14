@@ -9,18 +9,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_deprecated_1 = require('@angular/router-deprecated');
 var ContactComponent = (function () {
-    function ContactComponent() {
-        this.contact = {};
+    function ContactComponent(router) {
+        this.router = router;
+        this.contact = null;
     }
+    ContactComponent.prototype.onCreateNew = function () {
+        this.router.navigate(['NewContact', { lastName: this.contact.lastName }]);
+    };
     ContactComponent = __decorate([
         core_1.Component({
             selector: "contactSelector",
-            template: "\n    \n   <div >\n            <div>\n                <label for=\"first-name\">First Name:</label>\n                <input [(ngModel)]=\"contact.firstName\" type=\"text\" id=\"first-name\"/>\n            </div>\n             <div>\n                <label for=\"last-name\">Last Name:</label>\n                <input [(ngModel)]=\"contact.lastName\" type=\"text\" id=\"last-name\"/>\n            </div>\n            <div>\n                <label for=\"phone\">Contact No:</label>\n                <input [(ngModel)]=\"contact.contactNo\" type=\"text\" id=\"phone\"/>\n            </div>\n            <div>\n                <label for=\"email\">EmailId:</label>\n                <input [(ngModel)]=\"contact.email\" type=\"text\" id=\"email\"/>\n            </div>           \n\n   </div>\n \n    ",
+            template: "\n    \n   <div >\n            <div>\n                <label for=\"first-name\">First Name:</label>\n                <input [(ngModel)]=\"contact.firstName\" type=\"text\" id=\"first-name\"/>\n            </div>\n             <div>\n                <label for=\"last-name\">Last Name:</label>\n                <input [(ngModel)]=\"contact.lastName\" type=\"text\" id=\"last-name\"/>\n            </div>\n            <div>\n                <label for=\"phone\">Contact No:</label>\n                <input [(ngModel)]=\"contact.contactNo\" type=\"text\" id=\"phone\"/>\n            </div>\n            <div>\n                <label for=\"email\">EmailId:</label>\n                <input [(ngModel)]=\"contact.email\" type=\"text\" id=\"email\"/>\n            </div>           \n            <button (click)=\"onCreateNew()\">Create Contact from Here</button>\n   </div>\n \n    ",
             inputs: ["contact"],
             styles: ["\n    label{\n        display:inline-block;\n        width:140px;\n    }\n    input{\n        width:250px;\n    }\n   "]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_deprecated_1.Router])
     ], ContactComponent);
     return ContactComponent;
 }());

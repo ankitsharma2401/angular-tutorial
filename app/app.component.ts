@@ -25,5 +25,6 @@ import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated'
 @RouteConfig([
   {path:'/contacts', name:'Contacts',component:ContactListComponent,useAsDefault:true},
   {path:'/newcontact', name:'NewContact',component:NewContactComponent}
+  
 ])
 export class AppComponent { }
