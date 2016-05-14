@@ -16,21 +16,25 @@ var NewContactComponent = (function () {
         this.contactService = contactService;
         this.router = router;
         this.routeParams = routeParams;
-        this.passedLastName = "";
     }
-    NewContactComponent.prototype.onAddCreate = function (firstName, lastName, phone, email) {
-        var contact = { firstName: firstName, lastName: lastName, contactNo: phone, email: email };
-        this.contactService.insertContact(contact);
+    // onAddCreate(firstName,lastName,phone,email){
+    //     let contact={firstName:firstName,lastName:lastName,contactNo:phone,email:email};
+    //     this.contactService.insertContact(contact);
+    //     this.router.navigate(['Contacts']);
+    // }
+    NewContactComponent.prototype.onSubmit = function () {
+        this.contactService.insertContact(this.newContact);
         this.router.navigate(['Contacts']);
     };
     NewContactComponent.prototype.ngOnInit = function () {
-        this.passedLastName = this.routeParams.get("lastName");
+        //this.passedLastName=this.routeParams.get("lastName");
+        this.newContact = { firstName: "", lastName: this.routeParams.get("lastName"), contactNo: "", email: "" };
     };
     NewContactComponent = __decorate([
         core_1.Component({
-            template: "\n           <div >\n            <div>\n                <label for=\"first-name\">First Name:</label>\n                <input type=\"text\" id=\"first-name\" #firstName />\n            </div>\n             <div>\n                <label for=\"last-name\">Last Name:</label>\n                <input  type=\"text\" id=\"last-name\" #lastName value=\"{{passedLastName}}\"/>\n            </div>\n            <div>\n                <label for=\"phone\">Contact No:</label>\n                <input  type=\"text\" id=\"phone\" #phone/>\n            </div>\n            <div>\n                <label for=\"email\">EmailId:</label>\n                <input  type=\"text\" id=\"email\" #email/>\n            </div>           \n            <button (click)=\"onAddCreate(firstName.value,lastName.value,phone.value,email.value)\">Create New Contact</button>\n   </div>\n    ",
+            template: "\n           <form #myForm=\"ngForm\" (ngSubmit)=\"onSubmit()\">\n            <div>\n                <label for=\"first-name\">First Name:</label>\n                <input type=\"text\" id=\"first-name\"\n                ngControl=\"first-Name\"\n                [(ngModel)]=\"newContact.firstName\"\n                required\n                #firstName=\"ngForm\"\n                />\n                <span *ngIf=\"!firstName.valid\">Not Valid</span>\n            </div>\n             <div>\n                <label for=\"last-name\">Last Name:</label>\n                <input  type=\"text\" id=\"last-name\"\n                ngControl=\"last-Name\"\n                [(ngModel)]=\"newContact.lastName\"\n                required\n                />\n            </div>\n            <div>\n                <label for=\"phone\">Contact No:</label>\n                <input  type=\"text\" id=\"phone\"\n                ngControl=\"phone\"\n                [(ngModel)]=\"newContact.contactNo\"\n                required\n                />\n            </div>\n            <div>\n                <label for=\"email\">EmailId:</label>\n                <input  type=\"text\" id=\"email\"\n                ngControl=\"email\"\n                [(ngModel)]=\"newContact.email\"\n                required\n                />\n            </div>           \n            <button type=\"submit\" [disabled]=\"!myForm.form.valid\">Create New Contact</button>\n   </form>\n    ",
             providers: [contact_service_1.ContactService],
-            styles: ["\n        label{\n            display:inline-block;\n            width:140px;\n        }\n        input{\n            width:250px;\n        }\n    "]
+            styles: ["\n        label{\n            display:inline-block;\n            width:140px;\n        }\n        input{\n            width:250px;\n        }\n        .ng-invalid{\n            border:1px solid red;\n        }\n    "]
         }), 
         __metadata('design:paramtypes', [contact_service_1.ContactService, router_deprecated_1.Router, router_deprecated_1.RouteParams])
     ], NewContactComponent);
