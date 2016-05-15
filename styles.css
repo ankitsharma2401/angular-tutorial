@@ -43,3 +43,15 @@ header nav a:active{
   background-color: #41abf2;
   border:1px solid #233dcb;
 }
+.parent{
+  margin:32px 0;
+  padding:16px;
+  background-color: grey;
+  border:1px solid black;
+}
+.child{
+  margin:32px 0;
+  padding:16px;
+  background-color: #41abf2;
+  border:1px solid black;
+}

@@ -3,6 +3,8 @@ import {ContactListComponent} from './contacts/contact-list.component'
 import {NewContactComponent} from './contacts/new-contact.component'
 import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated'
 import {HttpTestComponent} from './http-test.component'
+import {ChildComponent} from './child.component'
+
 @Component({
   selector: 'my-app',
   template: `<h1>My First Angular 2 App</h1>
@@ -36,9 +38,22 @@ import {HttpTestComponent} from './http-test.component'
     </div>
   </div>
   
+  <div class="parent">
+    <h1>Parent</h1>
+    <p>Value entered in child component:{{childValue}}</p>
+    <input type="text" #parentInput 
+    (keyup)="0"><br>
+    
+    <div class="child">
+      <child [passedValue]="parentInput.value"
+      (childChanged)="childValue=$event"></child>
+    </div>
+  </div>
+  
   `,
+  
   directives: [ContactListComponent,HttpTestComponent,
-  ROUTER_DIRECTIVES]
+  ROUTER_DIRECTIVES,ChildComponent]
 })
 @RouteConfig([
   {path:'/contacts', name:'Contacts',component:ContactListComponent,useAsDefault:true},
@@ -47,7 +62,9 @@ import {HttpTestComponent} from './http-test.component'
 ])
 export class AppComponent {
   date = new Date();
+  childValue:string;
   randomData = new Promise((resolve,reject) => {
     setTimeout(() => resolve('Random data!'), 1000);
+    
   });
  }
