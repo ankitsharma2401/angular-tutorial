@@ -12,7 +12,7 @@ import {OnInit} from '@angular/core'
         (click)="selectContact(contact)"
         [class.clicked]="showDetails===contact"
         >
-            {{contact.firstName}} {{contact.lastName}}
+            {{contact.firstName}} {{contact.lastName | uppercase}}
         </li>
     </ul>
     <contactSelector *ngIf="showDetails !== null" [contact]="showDetails"></contactSelector>
