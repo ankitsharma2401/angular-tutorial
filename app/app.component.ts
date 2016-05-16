@@ -6,6 +6,7 @@ import {HttpTestComponent} from './http-test.component'
 import {ChildComponent} from './child.component'
 import {Component1Component} from './component1.component'
 import {Component2Component} from './component2.component'
+import {jQueryComponent} from './jquery.component'
 
 @Component({
   selector: 'my-app',
@@ -59,12 +60,13 @@ import {Component2Component} from './component2.component'
   <section class="component">
     <my-component-2></my-component-2>
    
-  </section>
-  
+  </section><br>
+  <my-jquery></my-jquery>
   `,
   
   directives: [ContactListComponent,HttpTestComponent,
-  ROUTER_DIRECTIVES,ChildComponent,Component1Component,Component2Component]
+  ROUTER_DIRECTIVES,ChildComponent,Component1Component,
+  Component2Component,jQueryComponent]
 })
 @RouteConfig([
   {path:'/contacts', name:'Contacts',component:ContactListComponent,useAsDefault:true},
