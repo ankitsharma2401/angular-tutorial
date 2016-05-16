@@ -4,6 +4,8 @@ import {NewContactComponent} from './contacts/new-contact.component'
 import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated'
 import {HttpTestComponent} from './http-test.component'
 import {ChildComponent} from './child.component'
+import {Component1Component} from './component1.component'
+import {Component2Component} from './component2.component'
 
 @Component({
   selector: 'my-app',
@@ -50,10 +52,19 @@ import {ChildComponent} from './child.component'
     </div>
   </div>
   
+  <section class="component">
+    <my-component-1></my-component-1>
+    
+  </section>
+  <section class="component">
+    <my-component-2></my-component-2>
+   
+  </section>
+  
   `,
   
   directives: [ContactListComponent,HttpTestComponent,
-  ROUTER_DIRECTIVES,ChildComponent]
+  ROUTER_DIRECTIVES,ChildComponent,Component1Component,Component2Component]
 })
 @RouteConfig([
   {path:'/contacts', name:'Contacts',component:ContactListComponent,useAsDefault:true},
