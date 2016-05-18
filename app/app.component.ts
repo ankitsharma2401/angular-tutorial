@@ -7,7 +7,7 @@ import {ChildComponent} from './child.component'
 import {Component1Component} from './component1.component'
 import {Component2Component} from './component2.component'
 import {jQueryComponent} from './jquery.component'
-
+import {ControlGroup} from '@angular/common'
 @Component({
   selector: 'my-app',
   template: `<h1>My First Angular 2 App</h1>
@@ -62,6 +62,28 @@ import {jQueryComponent} from './jquery.component'
    
   </section><br>
   <my-jquery></my-jquery>
+  
+  <div class="flex">
+    <div id="set-user" class="container">
+      <h2>Set a user</h2>
+      <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <div>
+          <label for="first-name">First Name</label>
+          <input type="text" ngControl="firstName">
+        </div>
+        <div>
+          <label for="last-name">Last Name</label>
+          <input type="text" ngControl="lastName">
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <div id="get-user" class="container">
+      <h2>Get User</h2>
+      <button (click)="onGetUser()">Get User</button>
+    </div>
+  </div>
+  <div class="container" id="response">Response: {{response}}</div>
   `,
   
   directives: [ContactListComponent,HttpTestComponent,

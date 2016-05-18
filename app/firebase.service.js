@@ -10,21 +10,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-var HttpTestService = (function () {
-    function HttpTestService(http) {
+var last_1 = require('rxjs/operator/last');
+var FirebaseService = (function () {
+    function FirebaseService(http) {
         this.http = http;
     }
-    HttpTestService.prototype.getCurrentTime = function () {
-        //return this.http.get('http://date.jsontest.com')
-        //.map(res => res.json());
+    FirebaseService.prototype.setUser = function (firstName, lastName) {
+        var body = JSON.stringify({ firstName: firstName, lastName: last_1.last() });
     };
-    HttpTestService.prototype.postJSON = function () {
+    FirebaseService.prototype.getUser = function () {
     };
-    HttpTestService = __decorate([
+    FirebaseService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
-    ], HttpTestService);
-    return HttpTestService;
+    ], FirebaseService);
+    return FirebaseService;
 }());
-exports.HttpTestService = HttpTestService;
-//# sourceMappingURL=http-test.service.js.map
+exports.FirebaseService = FirebaseService;
+//# sourceMappingURL=firebase.service.js.map
